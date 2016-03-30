@@ -1,5 +1,6 @@
 do
-local AmirSbss = 122774063
+local AmirSbss = 106789762
+
 
 local function setrank(msg, name, value) -- setrank function
   local hash = nil
@@ -26,8 +27,8 @@ local function res_user_callback(extra, success, result) -- /info <username> fun
 	local hash = 'rank:'..extra.chat2..':variables'
 	local value = redis:hget(hash, result.id)
     if not value then
-	 if result.id == tonumber(AmirSbss) then
-	   text = text..'Rank : Amir Sbss \n\n'
+	 if result.id == tonumber(mehdi) then
+	   text = text..'Rank : mehdi \n\n'
 	  elseif is_admin2(result.id) then
 	   text = text..'Rank : Admin \n\n'
 	  elseif is_owner2(result.id, extra.chat2) then
@@ -45,7 +46,7 @@ local function res_user_callback(extra, success, result) -- /info <username> fun
   local um_hash = 'msgs:'..result.id..':'..extra.chat2
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
   text = text..'Total messages : '..user_info_msgs..'\n\n'
-  text = text..'#Sbss_Team'
+  text = text..'#...'
   send_msg(extra.receiver, text, ok_cb,  true)
   else
 	send_msg(extra.receiver, ' Username not found.', ok_cb, false)
@@ -66,7 +67,7 @@ local function action_by_id(extra, success, result)  -- /info <ID> function
   local value = redis:hget(hash, result.id)
   if not value then
 	 if result.id == tonumber(AmirSbss) then
-	   text = text..'Rank : Amir Sbss \n\n'
+	   text = text..'Rank : mehdi \n\n'
 	  elseif is_admin2(result.id) then
 	   text = text..'Rank : Admin \n\n'
 	  elseif is_owner2(result.id, extra.chat2) then
@@ -84,7 +85,7 @@ local function action_by_id(extra, success, result)  -- /info <ID> function
   local um_hash = 'msgs:'..result.id..':'..extra.chat2
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
   text = text..'Total messages : '..user_info_msgs..'\n\n'
-  text = text..'#Sbss_Team'
+  text = text..'#...'
   send_msg(extra.receiver, text, ok_cb,  true)
   else
   send_msg(extra.receiver, 'id not found.\nuse : /info @username', ok_cb, false)
@@ -104,7 +105,7 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
 		local value = redis:hget(hash, result.from.id)
 		 if not value then
 		    if result.from.id == tonumber(AmirSbss) then
-		       text = text..'Rank : Amir Sbss \n\n'
+		       text = text..'Rank : mehdi \n\n'
 		     elseif is_admin2(result.from.id) then
 		       text = text..'Rank : Admin \n\n'
 		     elseif is_owner2(result.from.id, result.to.id) then
@@ -123,7 +124,7 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
   local um_hash = 'msgs:'..result.from.id..':'..result.to.id
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
   text = text..'Total messages : '..user_info_msgs..'\n\n'
-  text = text..'#Sbss_Team'
+  text = text..'#...'
   send_msg(extra.receiver, text, ok_cb, true)
 end
 
@@ -171,8 +172,8 @@ local function run(msg, matches)
 	if hash then
 	  local value = redis:hget(hash, msg.from.id)
 	  if not value then
-		if msg.from.id == tonumber(AmirSbss) then
-		 text = text..'Rank : Amir Sbss \n\n'
+		if msg.from.id == tonumber(mehdi) then
+		 text = text..'Rank : mehdi \n\n'
 		  send_document(get_receiver(msg), "/root/robot/amirsbss.webp", ok_cb, false)
 		elseif is_sudo(msg) then
 		 text = text..'Rank : Sudo \n\n'
